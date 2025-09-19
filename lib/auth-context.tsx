@@ -2,10 +2,16 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
+
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    userType: string;
+}
 
 interface AuthContextType {
-  user: { id: string; userType: string } | null;
+  user: User | null;
   login: (token: string) => void;
   logout: () => void;
 }
@@ -13,30 +19,43 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<{ id: string; userType: string } | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const token = Cookies.get('token');
-    if (token) {
-      try {
-        const decoded = jwtDecode<{ userId: string; userType: string }>(token);
-        setUser({ id: decoded.userId, userType: decoded.userType });
-      } catch (error) {
-        console.error("Invalid token", error);
-        Cookies.remove('token');
+    const fetchUser = async () => {
+      const token = Cookies.get('token');
+      if (token) {
+        try {
+          const res = await fetch('/api/user');
+          if (res.ok) {
+            const userData = await res.json();
+            setUser(userData);
+          } else {
+            Cookies.remove('token');
+          }
+        } catch (error) {
+          console.error("Failed to fetch user", error);
+          Cookies.remove('token');
+        }
       }
-    }
+    };
+    fetchUser();
   }, []);
 
-  const login = (token: string) => {
+  const login = async (token: string) => {
     Cookies.set('token', token, { secure: process.env.NODE_ENV !== 'development', path: '/' });
     try {
-        const decoded = jwtDecode<{ userId: string; userType: string }>(token);
-        setUser({ id: decoded.userId, userType: decoded.userType });
-      } catch (error) {
-        console.error("Invalid token", error);
+        const res = await fetch('/api/user');
+        if (res.ok) {
+            const userData = await res.json();
+            setUser(userData);
+        } else {
+            Cookies.remove('token');
+        }
+    } catch (error) {
+        console.error("Failed to fetch user", error);
         Cookies.remove('token');
-      }
+    }
   };
 
   const logout = () => {

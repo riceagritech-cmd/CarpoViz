@@ -7,19 +7,19 @@ import { Leaf, MapPin, Star, Clock, Car, User, Bell, Settings, Brain, Zap, Messa
 import Link from "next/link"
 import { RealTimeMap } from "@/components/real-time-map"
 import { useState, useEffect } from "react"
-import { useUser } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth-context"
 import { useRouter } from "next/navigation"
 
 export default function DashboardPage() {
-  const { user, isSignedIn, isLoaded } = useUser()
+  const { user, logout } = useAuth()
   const router = useRouter()
   const [showLiveMap, setShowLiveMap] = useState(false)
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
-      router.push("/sign-in")
+    if (!user) {
+      router.push("/auth/signin")
     }
-  }, [isSignedIn, isLoaded, router])
+  }, [user, router])
 
   const userStats = {
     rating: 4.8,
@@ -55,7 +55,7 @@ export default function DashboardPage() {
     { id: 3, type: "green-points", message: "You earned 15 green points!", time: "1 hour ago" },
   ]
 
-  if (!isLoaded) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
@@ -66,10 +66,6 @@ export default function DashboardPage() {
         </div>
       </div>
     )
-  }
-
-  if (!isSignedIn) {
-    return null // Will redirect in useEffect
   }
 
   return (
@@ -93,9 +89,15 @@ export default function DashboardPage() {
             <Button variant="ghost" size="sm">
               <Settings className="w-4 h-4" />
             </Button>
+            <Button variant="ghost" size="sm" onClick={() => {
+              logout()
+              router.push('/auth/signin')
+            }}>
+              Logout
+            </Button>
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <span className="text-sm font-medium text-primary-foreground">
-                {user?.firstName?.charAt(0)?.toUpperCase() || "U"}
+                {user?.name?.charAt(0)?.toUpperCase() || "U"}
               </span>
             </div>
           </div>
@@ -105,7 +107,7 @@ export default function DashboardPage() {
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Welcome back, {user?.firstName || "User"}!</h2>
+          <h2 className="text-3xl font-bold mb-2">Welcome back, {user?.name || "User"}!</h2>
           <p className="text-muted-foreground">Ready to make Vizag greener today?</p>
         </div>
 

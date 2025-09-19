@@ -39,11 +39,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
     }
 
-    const token = jwt.sign({ userId: user.id, userType: user.userType }, process.env.JWT_SECRET || 'your-secret-key', {
+    const token = jwt.sign({ userId: user.id, userType: user.userType }, process.env.JWT_SECRET!, {
       expiresIn: '1h',
     });
 
-    const response = NextResponse.json({ message: 'Logged in successfully' });
+    const response = NextResponse.json({ message: 'Logged in successfully', token });
     response.cookies.set('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',

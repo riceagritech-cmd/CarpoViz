@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Users, Leaf, Shield, Star, Clock } from "lucide-react"
+import { AuthButtons } from "@/components/auth-buttons"
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
               Rewards
             </a>
           </nav>
+          <AuthButtons />
         </div>
       </header>
 
