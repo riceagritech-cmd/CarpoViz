@@ -154,19 +154,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Total Users</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalUsers.toLocaleString()}</p>
-                </div>
-                <Users className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -228,77 +216,13 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        <Tabs defaultValue="users" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="users">Users</TabsTrigger>
+        <Tabs defaultValue="rides" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="rides">Rides</TabsTrigger>
             <TabsTrigger value="reports">Reports</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
-
-          <TabsContent value="users" className="space-y-4">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <CardTitle>User Management</CardTitle>
-                    <CardDescription>Manage registered users and their verification status</CardDescription>
-                  </div>
-                  <div className="flex gap-2">
-                    <Input placeholder="Search users..." className="w-64" />
-                    <Button>Search</Button>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {recentUsers.map((user) => (
-                    <div key={user.id} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-                          <Users className="h-5 w-5 text-gray-600" />
-                        </div>
-                        <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-sm text-gray-600">{user.email}</p>
-                        </div>
-                        <Badge variant={user.type === "Driver" ? "default" : "secondary"}>{user.type}</Badge>
-                        <Badge
-                          variant={
-                            user.status === "Active"
-                              ? "default"
-                              : user.status === "Pending"
-                                ? "secondary"
-                                : "destructive"
-                          }
-                        >
-                          {user.status}
-                        </Badge>
-                        {user.verified && (
-                          <Badge className="bg-green-100 text-green-800">
-                            <CheckCircle className="h-3 w-3 mr-1" />
-                            Verified
-                          </Badge>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Button size="sm" variant="outline">
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button size="sm" variant="outline">
-                          <MessageSquare className="h-4 w-4" />
-                        </Button>
-                        <Button size="sm" variant="outline">
-                          <Ban className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
 
           <TabsContent value="rides" className="space-y-4">
             <Card>
@@ -413,19 +337,6 @@ export default function AdminDashboard() {
             <div className="grid gap-4 md:grid-cols-2">
               <Card>
                 <CardHeader>
-                  <CardTitle>User Growth</CardTitle>
-                  <CardDescription>New user registrations over time</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64 flex items-center justify-center text-gray-500">
-                    <TrendingUp className="h-16 w-16 mb-4" />
-                    <p>Chart visualization would go here</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
                   <CardTitle>Ride Statistics</CardTitle>
                   <CardDescription>Daily ride completions and cancellations</CardDescription>
                 </CardHeader>
@@ -474,18 +385,6 @@ export default function AdminDashboard() {
                     <span>Maintenance Mode</span>
                     <Button variant="outline" size="sm">
                       Toggle
-                    </Button>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>New User Registrations</span>
-                    <Button variant="outline" size="sm">
-                      Enabled
-                    </Button>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Auto-verification</span>
-                    <Button variant="outline" size="sm">
-                      Disabled
                     </Button>
                   </div>
                 </CardContent>

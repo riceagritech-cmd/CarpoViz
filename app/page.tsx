@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Users, Leaf, Shield, Star, Clock } from "lucide-react"
-import { AuthButtons } from "@/components/auth-buttons"
 
 export default function HomePage() {
   return (
@@ -27,7 +26,6 @@ export default function HomePage() {
               Rewards
             </a>
           </nav>
-          <AuthButtons />
         </div>
       </header>
 
@@ -46,13 +44,13 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
-              <a href="/sign-up">
+              <a href="/dashboard">
                 <MapPin className="w-5 h-5 mr-2" />
                 Find a Ride
               </a>
             </Button>
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6" asChild>
-              <a href="/sign-up">
+              <a href="/dashboard">
                 <Users className="w-5 h-5 mr-2" />
                 Offer a Ride
               </a>
@@ -74,10 +72,10 @@ export default function HomePage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-xl">Sign Up</CardTitle>
+                <CardTitle className="text-xl">Get Started</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription>Create your account with phone verification and Aadhar for drivers</CardDescription>
+                <CardDescription>Start finding or offering rides right away. No account needed!</CardDescription>
               </CardContent>
             </Card>
             <Card className="text-center border-border/50">
@@ -243,7 +241,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="text-lg px-8 py-6" asChild>
-              <a href="/sign-up">Get Started Now</a>
+              <a href="/dashboard">Get Started Now</a>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-transparent">
               Download App

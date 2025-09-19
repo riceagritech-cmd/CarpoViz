@@ -6,20 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import { Leaf, MapPin, Star, Clock, Car, User, Bell, Settings, Brain, Zap, MessageCircle, Shield } from "lucide-react"
 import Link from "next/link"
 import { RealTimeMap } from "@/components/real-time-map"
-import { useState, useEffect } from "react"
-import { useAuth } from "@/lib/auth-context"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function DashboardPage() {
-  const { user, logout } = useAuth()
   const router = useRouter()
   const [showLiveMap, setShowLiveMap] = useState(false)
-
-  useEffect(() => {
-    if (!user) {
-      router.push("/auth/signin")
-    }
-  }, [user, router])
 
   const userStats = {
     rating: 4.8,
@@ -55,19 +47,6 @@ export default function DashboardPage() {
     { id: 3, type: "green-points", message: "You earned 15 green points!", time: "1 hour ago" },
   ]
 
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-            <Leaf className="w-5 h-5 text-primary-foreground animate-pulse" />
-          </div>
-          <p className="text-muted-foreground">Loading your dashboard...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -89,17 +68,11 @@ export default function DashboardPage() {
             <Button variant="ghost" size="sm">
               <Settings className="w-4 h-4" />
             </Button>
-            <Button variant="ghost" size="sm" onClick={() => {
-              logout()
-              router.push('/auth/signin')
-            }}>
-              Logout
-            </Button>
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium text-primary-foreground">
-                {user?.name?.charAt(0)?.toUpperCase() || "U"}
-              </span>
-            </div>
+            <Link href="/profile">
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-primary-foreground" />
+              </div>
+            </Link>
           </div>
         </div>
       </header>
@@ -107,7 +80,7 @@ export default function DashboardPage() {
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Welcome back, {user?.name || "User"}!</h2>
+          <h2 className="text-3xl font-bold mb-2">Welcome!</h2>
           <p className="text-muted-foreground">Ready to make Vizag greener today?</p>
         </div>
 
