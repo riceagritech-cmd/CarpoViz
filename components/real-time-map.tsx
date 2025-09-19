@@ -111,7 +111,7 @@ export function RealTimeMap({ userLocation, destination, showVehicles = true, tr
   const handleSOS = () => {
     setSosActive(true)
     // In real app, this would trigger emergency services
-    console.log("[v0] SOS activated - Emergency services contacted")
+    console.log("SOS activated - Emergency services contacted")
     setTimeout(() => setSosActive(false), 5000)
   }
 

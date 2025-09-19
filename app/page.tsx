@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Users, Leaf, Shield, Star, Clock } from "lucide-react"
-import { AuthHeader } from "@/components/auth-header"
+import { AuthButtons } from "@/components/auth-buttons"
 
 export default function HomePage() {
   return (
@@ -27,7 +27,7 @@ export default function HomePage() {
               Rewards
             </a>
           </nav>
-          <AuthHeader />
+          <AuthButtons />
         </div>
       </header>
 
@@ -252,85 +252,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                  <Leaf className="w-5 h-5 text-primary-foreground" />
-                </div>
-                <h4 className="text-xl font-bold">CarpoViz</h4>
-              </div>
-              <p className="text-muted-foreground">Making Visakhapatnam greener, one ride at a time.</p>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4">Platform</h5>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Find Rides
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Offer Rides
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Green Points
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4">Safety</h5>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Verification
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Community Guidelines
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Emergency Support
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="font-semibold mb-4">Support</h5>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Help Center
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Privacy Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 CarpoViz. All rights reserved. Built for a greener Visakhapatnam.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
