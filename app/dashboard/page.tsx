@@ -49,43 +49,15 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <Leaf className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <h1 className="text-2xl font-bold text-foreground">CarpoViz</h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="relative">
-              <Bell className="w-4 h-4" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-destructive rounded-full text-xs flex items-center justify-center text-white">
-                3
-              </div>
-            </Button>
-            <Button variant="ghost" size="sm">
-              <Settings className="w-4 h-4" />
-            </Button>
-            <Link href="/profile">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-primary-foreground" />
-              </div>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
+      <main className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Welcome Section */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">Welcome!</h2>
+          <h1 className="text-3xl font-bold mb-2">Welcome Back!</h1>
           <p className="text-muted-foreground">Ready to make Vizag greener today?</p>
         </div>
 
         <div className="mb-8">
-          <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/5">
+          <Card className="border-primary/20 bg-gradient-to-r from-primary/10 to-secondary/10">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Brain className="w-5 h-5 text-primary" />
@@ -94,7 +66,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
+                <div className="flex items-center gap-3 p-3 bg-card/80 rounded-lg">
                   <Zap className="w-5 h-5 text-primary" />
                   <div>
                     <p className="font-medium text-sm">Optimal ride time to IT Hub</p>
@@ -104,8 +76,8 @@ export default function DashboardPage() {
                     Offer
                   </Button>
                 </div>
-                <div className="flex items-center gap-3 p-3 bg-white/50 rounded-lg">
-                  <MapPin className="w-5 h-5 text-secondary" />
+                <div className="flex items-center gap-3 p-3 bg-card/80 rounded-lg">
+                  <MapPin className="w-5 h-5 text-secondary-foreground" />
                   <div>
                     <p className="font-medium text-sm">3 riders near you</p>
                     <p className="text-xs text-muted-foreground">MVP Colony → Beach Road</p>
@@ -120,7 +92,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <Card className="border-border/50">
+          <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">Green Points</CardTitle>
@@ -133,11 +105,11 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">Total Rides</CardTitle>
-                <Car className="w-4 h-4 text-secondary" />
+                <Car className="w-4 h-4 text-secondary-foreground" />
               </div>
             </CardHeader>
             <CardContent>
@@ -146,11 +118,11 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">Rating</CardTitle>
-                <Star className="w-4 h-4 text-accent-foreground" />
+                <Star className="w-4 h-4 text-accent" />
               </div>
             </CardHeader>
             <CardContent>
@@ -159,7 +131,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">CO₂ Saved</CardTitle>
@@ -174,7 +146,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Card className="border-border/50">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-primary" />
@@ -187,7 +159,7 @@ export default function DashboardPage() {
                 <MapPin className="w-4 h-4 mr-2" />
                 {showLiveMap ? "Hide Live Map" : "Show Live Map"}
               </Button>
-              <Button variant="outline" className="w-full bg-transparent" asChild>
+              <Button variant="outline" className="w-full" asChild>
                 <Link href="/rides/find">
                   <Brain className="w-4 h-4 mr-2" />
                   AI-Powered Search
@@ -196,10 +168,10 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Car className="w-5 h-5 text-secondary" />
+                <Car className="w-5 h-5 text-secondary-foreground" />
                 Smart Ride Offering
               </CardTitle>
               <CardDescription>AI suggests optimal routes and pricing</CardDescription>
@@ -211,7 +183,7 @@ export default function DashboardPage() {
                   Offer Smart Ride
                 </Link>
               </Button>
-              <Button variant="outline" className="w-full bg-transparent">
+              <Button variant="outline" className="w-full">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Chat with Riders
               </Button>
@@ -237,7 +209,7 @@ export default function DashboardPage() {
         )}
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Card className="border-border/50">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Bell className="w-5 h-5 text-muted-foreground" />
@@ -267,7 +239,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <User className="w-5 h-5 text-muted-foreground" />
@@ -276,7 +248,7 @@ export default function DashboardPage() {
               <CardDescription>Manage your account and preferences</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="w-full bg-transparent" asChild>
+              <Button variant="outline" className="w-full" asChild>
                 <Link href="/profile">
                   <User className="w-4 h-4 mr-2" />
                   View Profile
@@ -285,7 +257,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-border/50">
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-muted-foreground" />
@@ -294,7 +266,7 @@ export default function DashboardPage() {
               <CardDescription>Emergency contacts and safety features</CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="w-full bg-transparent">
+              <Button variant="outline" className="w-full">
                 <Shield className="w-4 h-4 mr-2" />
                 Safety Settings
               </Button>
@@ -302,7 +274,7 @@ export default function DashboardPage() {
           </Card>
         </div>
 
-        <Card className="border-border/50">
+        <Card>
           <CardHeader>
             <CardTitle>Recent Rides</CardTitle>
             <CardDescription>Your latest carpooling activities</CardDescription>
@@ -310,7 +282,7 @@ export default function DashboardPage() {
           <CardContent>
             <div className="space-y-4">
               {recentRides.map((ride) => (
-                <div key={ride.id} className="flex items-center justify-between p-4 border border-border/50 rounded-lg">
+                <div key={ride.id} className="flex items-center justify-between p-4 border rounded-lg">
                   <div className="flex items-center gap-4">
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center ${
@@ -320,7 +292,7 @@ export default function DashboardPage() {
                       {ride.type === "offered" ? (
                         <Car className="w-5 h-5 text-primary" />
                       ) : (
-                        <User className="w-5 h-5 text-secondary" />
+                        <User className="w-5 h-5 text-secondary-foreground" />
                       )}
                     </div>
                     <div>
@@ -353,7 +325,7 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </main>
     </div>
   )
 }
